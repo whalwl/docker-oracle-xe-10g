@@ -1,4 +1,4 @@
-FROM i386/debian:7.11
+FROM registry.cn-shanghai.aliyuncs.com/whalwl/oracle:debian7.11-i386
 
 MAINTAINER Kristian Du <kristian.du@gmail.com>
 
@@ -10,17 +10,6 @@ ENV ORACLE_SID=XE
 ADD oracle-xe_10.2.0.1-1.1_i386.debaa /
 ADD oracle-xe_10.2.0.1-1.1_i386.debab /
 ADD oracle-xe_10.2.0.1-1.1_i386.debac /
-
-RUN echo "deb http://archive.debian.org/debian/ wheezy main contrib non-free" > /etc/apt/sources.list;cat /etc/apt/sources.list && \
-    dpkg --add-architecture i386 && \
-    apt-get update && apt-get install -y \
-       bc:i386 \
-       libaio1:i386 \
-       libc6:i386 \
-       net-tools \
-       openssh-server && \
-    apt-get clean
-
 
 RUN mkdir /var/run/sshd && \
     echo 'root:admin' | chpasswd && \
